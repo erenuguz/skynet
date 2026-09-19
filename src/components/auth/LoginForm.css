@@ -1,0 +1,81 @@
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--form-gap);
+}
+
+.login-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--form-field-gap);
+}
+
+.login-form__label {
+    color: var(--form-label-color);
+    font-size: var(--form-label-font-size);
+    font-weight: var(--form-label-font-weight);
+}
+
+.login-form__input {
+    width: 100%;
+    min-width: 0;
+    height: var(--input-height);
+    padding-inline: var(--input-padding-inline);
+    border: var(--input-border-width) var(--border-style)
+        var(--input-border-color);
+    border-radius: var(--input-radius);
+    background: var(--input-background);
+    color: var(--input-text-color);
+    font-size: var(--input-font-size);
+    transition:
+        border-color var(--duration-fast) var(--ease-standard),
+        background-color var(--duration-fast) var(--ease-standard);
+}
+
+.login-form__input::placeholder {
+    color: var(--input-placeholder-color);
+}
+
+.login-form__input:focus {
+    border-color: var(--input-border-color-focus);
+}
+
+.login-form__submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--button-gap);
+    width: 100%;
+    min-height: var(--button-height);
+    padding: var(--space-2) var(--button-padding-inline);
+    border: var(--button-border-width) var(--border-style)
+        var(--button-primary-border-color);
+    border-radius: var(--button-radius);
+    background: var(--button-primary-background);
+    color: var(--button-primary-text-color);
+    box-shadow: var(--button-shadow);
+    font-size: var(--button-font-size);
+    font-weight: var(--button-font-weight);
+    transition:
+        background-color var(--duration-fast) var(--ease-standard),
+        transform var(--duration-fast) var(--ease-standard);
+}
+
+@media (hover: hover) {
+    .login-form__input:hover {
+        border-color: var(--input-border-color-hover);
+    }
+
+    .login-form__input:focus {
+        border-color: var(--input-border-color-focus);
+    }
+
+    .login-form__submit:hover {
+        background: var(--button-primary-background-hover);
+        transform: var(--button-hover-transform);
+    }
+}
+
+.login-form__submit:active {
+    transform: var(--button-active-transform);
+}

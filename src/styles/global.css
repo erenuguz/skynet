@@ -1,0 +1,40 @@
+@import './theme.css';
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    background: var(--app-background);
+    color: var(--app-text-color);
+    font-family: var(--app-font-family);
+    font-size: var(--app-font-size);
+    line-height: var(--line-height-normal);
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+::selection {
+    background: var(--selection-background);
+    color: var(--selection-text-color);
+}
+
+:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
+}

@@ -1,0 +1,424 @@
+:root {
+    color-scheme: dark;
+
+    /* ========================================
+     1. RENK PALETİ
+     ======================================== */
+
+    --color-background: #14151a;
+    --color-surface: #1b1d24;
+    --color-surface-raised: #232630;
+    --color-surface-hover: #2c303c;
+
+    --color-text: #f1f2f6;
+    --color-text-secondary: #b5bac9;
+    --color-text-muted: #949bae;
+
+    --color-accent: #a39bff;
+    --color-accent-hover: #b6afff;
+    --color-accent-soft: #302c4d;
+    --color-on-accent: #171329;
+
+    --color-border: #353947;
+    --color-border-strong: #51586b;
+
+    --color-danger: #ff9b9b;
+    --color-danger-soft: #43282f;
+    --color-success: #8cddb0;
+    --color-warning: #f0cd86;
+
+    /* ========================================
+     2. YAZI
+     ======================================== */
+
+    --font-family-body:
+        system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-family-heading: var(--font-family-body);
+    --font-family-code: 'Cascadia Code', Consolas, monospace;
+
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 2rem;
+
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.7;
+
+    --letter-spacing-heading: -0.025em;
+    --letter-spacing-label: 0.04em;
+
+    /* ========================================
+     3. BOŞLUKLAR VE ÖLÇÜLER
+     ======================================== */
+
+    --space-0: 0;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+
+    --control-height-sm: 2rem;
+    --control-height-md: 2.75rem;
+    --control-height-lg: 3rem;
+
+    --icon-size-sm: 1rem;
+    --icon-size-md: 1.25rem;
+    --icon-size-lg: 1.5rem;
+
+    /* ========================================
+     4. KENARLIKLAR, KÖŞELER VE GÖLGELER
+     ======================================== */
+
+    --border-width: 1px;
+    --border-style: solid;
+
+    --radius-sm: 0.375rem;
+    --radius-md: 0.625rem;
+    --radius-lg: 0.875rem;
+    --radius-xl: 1.25rem;
+    --radius-pill: 999px;
+
+    --shadow-sm: 0 2px 8px rgb(0 0 0 / 18%);
+    --shadow-md: 0 8px 24px rgb(0 0 0 / 25%);
+    --shadow-lg: 0 20px 60px rgb(0 0 0 / 40%);
+
+    --focus-ring: 2px solid var(--color-accent);
+    --focus-ring-offset: 3px;
+
+    /* ========================================
+     5. HAREKET VE KATMANLAR
+     ======================================== */
+
+    --duration-fast: 120ms;
+    --duration-normal: 200ms;
+    --duration-slow: 300ms;
+    --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+    --opacity-disabled: 0.5;
+
+    --z-header: 10;
+    --z-sidebar-backdrop: 20;
+    --z-sidebar: 30;
+    --z-dropdown: 40;
+    --z-modal-backdrop: 50;
+    --z-modal: 60;
+    --z-toast: 70;
+
+    /* ========================================
+     6. UYGULAMA YERLEŞİMİ
+     ======================================== */
+
+    --app-background: var(--color-background);
+    --app-text-color: var(--color-text);
+    --app-font-family: var(--font-family-body);
+    --app-font-size: var(--font-size-md);
+
+    --sidebar-width: 17rem;
+    --sidebar-mobile-width: min(85vw, 20rem);
+
+    --header-height: 4rem;
+    --content-max-width: 60rem;
+    --content-padding-inline: var(--space-6);
+    --content-padding-block: var(--space-4);
+
+    /* ========================================
+     7. ODA PANELİ
+     ======================================== */
+
+    --sidebar-background: var(--color-surface);
+    --sidebar-border: var(--border-width) var(--border-style)
+        var(--color-border);
+    --sidebar-padding: var(--space-3);
+    --sidebar-section-gap: var(--space-6);
+
+    --sidebar-title-color: var(--color-text);
+    --sidebar-title-font-size: var(--font-size-lg);
+    --sidebar-title-font-weight: var(--font-weight-bold);
+
+    --room-list-gap: var(--space-1);
+
+    --room-background: transparent;
+    --room-background-hover: var(--color-surface-hover);
+    --room-background-active: var(--color-accent-soft);
+    --room-text-color: var(--color-text-secondary);
+    --room-text-color-hover: var(--color-text);
+    --room-text-color-active: var(--color-accent);
+    --room-icon-color: var(--color-text-muted);
+    --room-icon-color-active: var(--color-accent);
+
+    --room-border: var(--border-width) var(--border-style) transparent;
+    --room-radius: var(--radius-md);
+    --room-min-height: var(--control-height-md);
+    --room-padding: var(--space-2) var(--space-3);
+    --room-gap: var(--space-2);
+    --room-font-size: var(--font-size-sm);
+    --room-font-weight: var(--font-weight-medium);
+
+    /* ========================================
+     8. ODA ÜST ÇUBUĞU
+     ======================================== */
+
+    --header-background: var(--color-background);
+    --header-border: var(--border-width) var(--border-style) var(--color-border);
+    --header-padding-inline: var(--content-padding-inline);
+    --header-gap: var(--space-3);
+
+    --header-title-color: var(--color-text);
+    --header-title-font-size: var(--font-size-lg);
+    --header-title-font-weight: var(--font-weight-semibold);
+    --header-icon-color: var(--color-text-muted);
+
+    /* ========================================
+     9. MESAJLAR
+     ======================================== */
+
+    --message-list-gap: var(--space-2);
+    --message-list-padding-block: var(--space-6);
+
+    --message-background: transparent;
+    --message-background-hover: var(--color-surface);
+    --message-background-editing: var(--color-surface-raised);
+    --message-border: var(--border-width) var(--border-style) transparent;
+    --message-radius: var(--radius-md);
+    --message-padding: var(--space-3) var(--space-4);
+    --message-content-gap: var(--space-2);
+
+    --message-text-color: var(--color-text);
+    --message-font-size: var(--font-size-md);
+    --message-line-height: var(--line-height-relaxed);
+
+    --message-meta-color: var(--color-text-muted);
+    --message-meta-font-size: var(--font-size-xs);
+    --message-edited-color: var(--color-text-muted);
+
+    --message-link-color: var(--color-accent);
+    --message-link-color-hover: var(--color-accent-hover);
+    --message-link-decoration: underline;
+
+    --message-actions-background: var(--color-surface-raised);
+    --message-actions-border: var(--border-width) var(--border-style)
+        var(--color-border);
+    --message-actions-radius: var(--radius-md);
+    --message-actions-shadow: var(--shadow-sm);
+    --message-actions-padding: var(--space-1);
+    --message-actions-gap: var(--space-1);
+
+    /* ========================================
+     10. KOD GÖRÜNÜMÜ
+     ======================================== */
+
+    --code-background: #101116;
+    --code-text-color: #e0e3ee;
+    --code-border: var(--border-width) var(--border-style) var(--color-border);
+    --code-radius: var(--radius-md);
+    --code-padding: var(--space-4);
+    --code-font-size: var(--font-size-sm);
+    --code-line-height: var(--line-height-normal);
+
+    --inline-code-background: var(--color-surface-raised);
+    --inline-code-text-color: var(--color-text);
+    --inline-code-radius: var(--radius-sm);
+    --inline-code-padding: 0.125rem var(--space-1);
+
+    /* ========================================
+     11. MESAJ YAZMA ALANI
+     ======================================== */
+
+    --composer-background: var(--color-surface-raised);
+    --composer-border-color: var(--color-border);
+    --composer-border-color-focus: var(--color-accent);
+    --composer-border-width: var(--border-width);
+    --composer-radius: var(--radius-lg);
+    --composer-shadow: none;
+
+    --composer-padding: var(--space-3);
+    --composer-gap: var(--space-3);
+    --composer-margin-bottom: var(--space-4);
+
+    --composer-input-min-height: 3rem;
+    --composer-input-max-height: 15rem;
+    --composer-text-color: var(--color-text);
+    --composer-placeholder-color: var(--color-text-muted);
+    --composer-font-size: var(--font-size-md);
+    --composer-line-height: var(--line-height-normal);
+
+    /* ========================================
+     12. BUTONLAR
+     ======================================== */
+
+    --button-height: var(--control-height-md);
+    --button-padding-inline: var(--space-4);
+    --button-gap: var(--space-2);
+    --button-radius: var(--radius-md);
+    --button-border-width: var(--border-width);
+    --button-font-size: var(--font-size-sm);
+    --button-font-weight: var(--font-weight-semibold);
+    --button-shadow: none;
+    --button-hover-transform: none;
+    --button-active-transform: translateY(1px);
+
+    --button-primary-background: var(--color-accent);
+    --button-primary-background-hover: var(--color-accent-hover);
+    --button-primary-text-color: var(--color-on-accent);
+    --button-primary-border-color: transparent;
+
+    --button-secondary-background: var(--color-surface-raised);
+    --button-secondary-background-hover: var(--color-surface-hover);
+    --button-secondary-text-color: var(--color-text);
+    --button-secondary-border-color: var(--color-border);
+
+    --button-ghost-background: transparent;
+    --button-ghost-background-hover: var(--color-surface-hover);
+    --button-ghost-text-color: var(--color-text-secondary);
+    --button-ghost-text-color-hover: var(--color-text);
+
+    --button-danger-background: var(--color-danger-soft);
+    --button-danger-background-hover: #563039;
+    --button-danger-text-color: var(--color-danger);
+    --button-danger-border-color: transparent;
+
+    --icon-button-size: var(--control-height-md);
+    --icon-button-radius: var(--radius-md);
+
+    /* ========================================
+     13. FORM ALANLARI
+     ======================================== */
+
+    --input-background: var(--color-background);
+    --input-background-disabled: var(--color-surface);
+    --input-text-color: var(--color-text);
+    --input-placeholder-color: var(--color-text-muted);
+
+    --input-border-color: var(--color-border);
+    --input-border-color-hover: var(--color-border-strong);
+    --input-border-color-focus: var(--color-accent);
+    --input-border-color-error: var(--color-danger);
+    --input-border-width: var(--border-width);
+
+    --input-height: var(--control-height-lg);
+    --input-radius: var(--radius-md);
+    --input-padding-inline: var(--space-3);
+    --input-font-size: var(--font-size-md);
+
+    --form-field-gap: var(--space-2);
+    --form-gap: var(--space-5);
+    --form-label-color: var(--color-text-secondary);
+    --form-label-font-size: var(--font-size-sm);
+    --form-label-font-weight: var(--font-weight-medium);
+    --form-error-color: var(--color-danger);
+    --form-hint-color: var(--color-text-muted);
+
+    /* ========================================
+     14. GİRİŞ EKRANI
+     ======================================== */
+
+    --login-background: var(--app-background);
+    --login-card-background: var(--color-surface);
+    --login-card-width: 26rem;
+    --login-card-padding: var(--space-8);
+    --login-card-radius: var(--radius-xl);
+    --login-card-border: var(--border-width) var(--border-style)
+        var(--color-border);
+    --login-card-shadow: var(--shadow-lg);
+    --login-title-font-size: var(--font-size-xl);
+    --login-description-color: var(--color-text-secondary);
+
+    /* ========================================
+     15. PENCERELER VE MENÜLER
+     ======================================== */
+
+    --overlay-background: rgb(0 0 0 / 65%);
+    --overlay-blur: 4px;
+
+    --modal-background: var(--color-surface);
+    --modal-width: 28rem;
+    --modal-padding: var(--space-6);
+    --modal-gap: var(--space-5);
+    --modal-radius: var(--radius-xl);
+    --modal-border: var(--border-width) var(--border-style) var(--color-border);
+    --modal-shadow: var(--shadow-lg);
+    --modal-title-font-size: var(--font-size-lg);
+
+    --dropdown-background: var(--color-surface-raised);
+    --dropdown-min-width: 11rem;
+    --dropdown-padding: var(--space-1);
+    --dropdown-radius: var(--radius-md);
+    --dropdown-border: var(--border-width) var(--border-style)
+        var(--color-border);
+    --dropdown-shadow: var(--shadow-md);
+    --dropdown-item-padding: var(--space-2) var(--space-3);
+    --dropdown-item-radius: var(--radius-sm);
+    --dropdown-item-background-hover: var(--color-surface-hover);
+
+    /* ========================================
+     16. BİLDİRİMLER VE BOŞ DURUMLAR
+     ======================================== */
+
+    --toast-background: var(--color-surface-raised);
+    --toast-text-color: var(--color-text);
+    --toast-border: var(--border-width) var(--border-style) var(--color-border);
+    --toast-radius: var(--radius-lg);
+    --toast-padding: var(--space-3) var(--space-4);
+    --toast-shadow: var(--shadow-md);
+    --toast-success-color: var(--color-success);
+    --toast-error-color: var(--color-danger);
+    --toast-warning-color: var(--color-warning);
+
+    --empty-state-title-color: var(--color-text-secondary);
+    --empty-state-description-color: var(--color-text-muted);
+    --empty-state-icon-color: var(--color-text-muted);
+    --empty-state-gap: var(--space-3);
+    --empty-state-padding: var(--space-8);
+
+    --loading-color: var(--color-accent);
+    --loading-track-color: var(--color-border);
+    --loading-size: 1.5rem;
+
+    /* ========================================
+     17. KAYDIRMA VE METİN SEÇİMİ
+     ======================================== */
+
+    --scrollbar-width: 8px;
+    --scrollbar-track: transparent;
+    --scrollbar-thumb: var(--color-border);
+    --scrollbar-thumb-hover: var(--color-border-strong);
+    --scrollbar-radius: var(--radius-pill);
+
+    --selection-background: var(--color-accent-soft);
+    --selection-text-color: var(--color-text);
+}
+
+/* Mobil görünümde değişen tema değerleri */
+@media (max-width: 48rem) {
+    :root {
+        --content-padding-inline: var(--space-3);
+        --header-height: 3.5rem;
+        --message-padding: var(--space-3);
+        --composer-margin-bottom: var(--space-2);
+        --login-card-padding: var(--space-6);
+        --modal-padding: var(--space-5);
+    }
+}
+
+/* Hareket azaltma tercihi */
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --duration-fast: 0ms;
+        --duration-normal: 0ms;
+        --duration-slow: 0ms;
+        --button-active-transform: none;
+    }
+}
