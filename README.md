@@ -1,8 +1,6 @@
 # Skynet
 
-Skynet; odalar oluşturarak bağlantı, kod, parola ve kişisel notları sohbet görünümünde saklamak için geliştirdiğim kişisel bilgi yönetimi uygulamasıdır.
-
-**Canlı uygulama:** [skynet-33b6c.web.app](https://skynet-33b6c.web.app)
+Skynet, React ve Firebase kullanılarak geliştirilmiş oda ve mesaj tabanlı bir web uygulamasıdır. Yapısı farklı kullanım senaryolarına uyarlanabilir.
 
 ## Özellikler
 
@@ -15,7 +13,7 @@ Skynet; odalar oluşturarak bağlantı, kod, parola ve kişisel notları sohbet 
 - Açılıp kapanabilen, mobil uyumlu kenar çubuğu
 - Yalnızca koyu tema
 - Yüklenme, hata, boş durum ve bildirim arayüzleri
-- Firebase Hosting üzerinde yayın
+- Firebase Hosting desteği
 
 ## Kullanılan Teknolojiler
 
