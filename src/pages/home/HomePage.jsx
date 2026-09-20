@@ -17,6 +17,7 @@ export default function HomePage({user}) {
         () => !window.matchMedia(MOBILE_BREAKPOINT).matches
     );
     const [selectedRoomId, setSelectedRoomId] = useState(null);
+    const [searchTarget, setSearchTarget] = useState(null);
     const [isCreateRoomOpen, setIsCreateRoomOpen] = useState(false);
     const [roomToEdit, setRoomToEdit] = useState(null);
     const [roomToDelete, setRoomToDelete] = useState(null);
@@ -59,14 +60,26 @@ export default function HomePage({user}) {
 
     const handleSelectRoom = (roomId) => {
         setSelectedRoomId(roomId);
+        setSearchTarget(null);
 
         if (window.matchMedia(MOBILE_BREAKPOINT).matches) {
             setIsSidebarOpen(false);
         }
     };
 
+    const handleSearchResultSelect = ({roomId, messageId}) => {
+        setSelectedRoomId(roomId);
+
+        setSearchTarget((currentTarget) => ({
+            roomId,
+            messageId,
+            requestId: (currentTarget?.requestId ?? 0) + 1,
+        }));
+    };
+
     const handleRoomCreated = (roomId) => {
         setSelectedRoomId(roomId);
+        setSearchTarget(null);
         setIsCreateRoomOpen(false);
 
         if (window.matchMedia(MOBILE_BREAKPOINT).matches) {
@@ -79,6 +92,10 @@ export default function HomePage({user}) {
             const nextRoom = rooms.find((room) => room.id !== roomId) ?? null;
 
             setSelectedRoomId(nextRoom?.id ?? null);
+        }
+
+        if (searchTarget?.roomId === roomId) {
+            setSearchTarget(null);
         }
 
         setRoomToDelete(null);
@@ -109,11 +126,19 @@ export default function HomePage({user}) {
             );
         }
 
+        const isSearchTargetRoom = searchTarget?.roomId === selectedRoom.id;
+
         return (
             <MessagesPanel
                 key={selectedRoom.id}
                 userId={user.uid}
                 roomId={selectedRoom.id}
+                focusMessageId={
+                    isSearchTargetRoom ? searchTarget.messageId : null
+                }
+                focusRequestId={
+                    isSearchTargetRoom ? searchTarget.requestId : null
+                }
             />
         );
     };
@@ -147,9 +172,12 @@ export default function HomePage({user}) {
 
                 <section className="home-content">
                     <ChatHeader
+                        userId={user.uid}
+                        rooms={rooms}
                         roomName={selectedRoom?.name}
                         isSidebarOpen={isSidebarOpen}
                         onOpenSidebar={() => setIsSidebarOpen(true)}
+                        onSearchResultSelect={handleSearchResultSelect}
                     />
 
                     <div className="home-content__body">{renderContent()}</div>

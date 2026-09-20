@@ -5,7 +5,12 @@ import MessageList from '@/components/messages/MessageList';
 import useMessages from '@/hooks/useMessages';
 import './MessagesPanel.css';
 
-export default function MessagesPanel({userId, roomId}) {
+export default function MessagesPanel({
+    userId,
+    roomId,
+    focusMessageId,
+    focusRequestId,
+}) {
     const [editingMessageId, setEditingMessageId] = useState(null);
     const [messageToDelete, setMessageToDelete] = useState(null);
 
@@ -25,6 +30,8 @@ export default function MessagesPanel({userId, roomId}) {
                     isLoading={isLoading}
                     hasError={hasError}
                     editingMessageId={editingMessageId}
+                    focusMessageId={focusMessageId}
+                    focusRequestId={focusRequestId}
                     onEditMessage={handleEditMessage}
                     onDeleteMessage={setMessageToDelete}
                     onFinishEditing={() => setEditingMessageId(null)}

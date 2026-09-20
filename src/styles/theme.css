@@ -215,6 +215,40 @@
     --header-title-font-weight: var(--font-weight-semibold);
     --header-icon-color: var(--color-text-muted);
 
+    /* Header arama alanı */
+
+    --search-width: 22rem;
+    --search-input-height: var(--control-height-md);
+    --search-padding-inline: var(--space-3);
+    --search-radius: var(--radius-md);
+    --search-font-size: var(--font-size-sm);
+
+    --search-background: var(--color-surface);
+    --search-background-focus: var(--color-surface-raised);
+    --search-text-color: var(--color-text);
+    --search-placeholder-color: var(--color-text-muted);
+    --search-icon-color: var(--color-text-muted);
+
+    --search-border: var(--border-width) var(--border-style) var(--color-border);
+    --search-border-color-hover: var(--color-border-strong);
+    --search-border-color-focus: var(--color-accent);
+
+    --search-results-width: 28rem;
+    --search-results-max-height: 26rem;
+    --search-results-background: var(--color-surface-raised);
+    --search-results-border: var(--border-width) var(--border-style)
+        var(--color-border);
+    --search-results-radius: var(--radius-lg);
+    --search-results-shadow: var(--shadow-md);
+
+    --search-status-color: var(--color-text-muted);
+    --search-result-padding: var(--space-3);
+    --search-result-radius: var(--radius-md);
+    --search-result-background-hover: var(--color-surface-hover);
+    --search-result-room-color: var(--color-accent);
+    --search-result-text-color: var(--color-text-secondary);
+    --search-result-meta-color: var(--color-text-muted);
+
     /* ========================================
      9. MESAJLAR
      ======================================== */
@@ -252,6 +286,9 @@
 
     --message-editor-min-height: 7rem;
     --message-editor-max-height: 24rem;
+
+    --message-highlight-background: var(--color-accent-soft);
+    --message-highlight-border-color: var(--color-accent);
 
     /* ========================================
      10. KOD GÖRÜNÜMÜ
@@ -463,6 +500,7 @@
         --composer-margin-bottom: var(--space-2);
         --login-card-padding: var(--space-6);
         --modal-padding: var(--space-5);
+        --search-width: min(46vw, 14rem);
     }
 }
 

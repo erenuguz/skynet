@@ -1,7 +1,15 @@
+import GlobalMessageSearch from '@/components/messages/search/GlobalMessageSearch';
 import IconButton from '@/components/ui/IconButton';
 import './ChatHeader.css';
 
-export default function ChatHeader({roomName, isSidebarOpen, onOpenSidebar}) {
+export default function ChatHeader({
+    userId,
+    rooms,
+    roomName,
+    isSidebarOpen,
+    onOpenSidebar,
+    onSearchResultSelect,
+}) {
     return (
         <header className="chat-header">
             {!isSidebarOpen && (
@@ -19,6 +27,12 @@ export default function ChatHeader({roomName, isSidebarOpen, onOpenSidebar}) {
                     {roomName || 'Oda seçilmedi'}
                 </h2>
             </div>
+
+            <GlobalMessageSearch
+                userId={userId}
+                rooms={rooms}
+                onSelectResult={onSearchResultSelect}
+            />
         </header>
     );
 }

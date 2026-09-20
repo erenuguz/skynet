@@ -8,13 +8,22 @@ export default function MessageItem({
     roomId,
     message,
     isEditing,
+    isHighlighted,
     onEdit,
     onDelete,
     onFinishEditing,
 }) {
+    const className = [
+        'message-item',
+        isEditing ? 'message-item--editing' : '',
+        isHighlighted ? 'message-item--highlighted' : '',
+    ]
+        .filter(Boolean)
+        .join(' ');
+
     if (isEditing) {
         return (
-            <article className="message-item message-item--editing">
+            <article className={className} id={`message-${message.id}`}>
                 <MessageEditor
                     userId={userId}
                     roomId={roomId}
@@ -30,7 +39,7 @@ export default function MessageItem({
     const formattedDate = formatMessageDate(message.createdAt);
 
     return (
-        <article className="message-item">
+        <article className={className} id={`message-${message.id}`}>
             <div className="message-item__body">
                 <p className="message-item__text">{message.text}</p>
 

@@ -48,3 +48,25 @@
         background: var(--message-background-hover);
     }
 }
+.message-item--highlighted {
+    animation: message-highlight 2400ms var(--ease-standard);
+}
+
+@keyframes message-highlight {
+    0%,
+    35% {
+        border-color: var(--message-highlight-border-color);
+        background: var(--message-highlight-background);
+    }
+
+    100% {
+        border-color: transparent;
+        background: var(--message-background);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .message-item--highlighted {
+        animation-duration: 1ms;
+    }
+}
