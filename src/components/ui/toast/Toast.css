@@ -3,22 +3,34 @@
     right: var(--toast-offset);
     bottom: var(--toast-offset);
     z-index: var(--z-toast);
+
     display: flex;
-    align-items: flex-start;
-    gap: var(--toast-gap);
     width: max-content;
     max-width: min(
         var(--toast-max-width),
         calc(100% - var(--toast-offset) - var(--toast-offset))
     );
     padding: var(--toast-padding);
+    align-items: flex-start;
+    gap: var(--toast-gap);
+
     border: var(--toast-border);
-    border-inline-start: var(--toast-accent-width) solid
-        var(--toast-error-color);
+    border-inline-start-width: var(--toast-accent-width);
     border-radius: var(--toast-radius);
+
     background: var(--toast-background);
     color: var(--toast-text-color);
     box-shadow: var(--toast-shadow);
+
+    animation: toast-enter var(--duration-normal) var(--ease-standard);
+}
+
+.toast--success {
+    border-inline-start-color: var(--toast-success-color);
+}
+
+.toast--error {
+    border-inline-start-color: var(--toast-error-color);
 }
 
 .toast__message {
@@ -26,27 +38,38 @@
     min-width: 0;
     margin: 0;
     align-self: center;
+
     overflow-wrap: anywhere;
     font-size: var(--toast-font-size);
 }
 
 .toast__close {
     display: inline-flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
     width: var(--toast-close-size);
     height: var(--toast-close-size);
     padding: 0;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+
     border: 0;
     border-radius: var(--toast-close-radius);
+
     background: transparent;
     color: var(--toast-close-color);
+
     font-size: var(--toast-close-font-size);
     line-height: 1;
+    cursor: pointer;
+
     transition:
         background-color var(--duration-fast) var(--ease-standard),
         color var(--duration-fast) var(--ease-standard);
+}
+
+.toast__close:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
 }
 
 @media (hover: hover) {
@@ -55,6 +78,19 @@
         color: var(--toast-close-color-hover);
     }
 }
+
+@keyframes toast-enter {
+    from {
+        opacity: 0;
+        transform: translateY(var(--space-3));
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @media (max-width: 48rem) {
     .toast {
         right: var(--space-3);
@@ -62,5 +98,11 @@
 
         width: auto;
         max-width: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .toast {
+        animation: none;
     }
 }

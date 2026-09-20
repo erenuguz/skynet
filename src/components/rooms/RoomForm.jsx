@@ -1,6 +1,8 @@
 import {useState} from 'react';
 import './RoomForm.css';
 
+import {ROOM_NAME_MAX_LENGTH} from '@/constants/limits';
+
 export default function RoomForm({
     initialName = '',
     submitLabel,
@@ -50,7 +52,7 @@ export default function RoomForm({
                     name="roomName"
                     type="text"
                     value={name}
-                    maxLength={60}
+                    maxLength={ROOM_NAME_MAX_LENGTH}
                     disabled={isSubmitting}
                     autoComplete="off"
                     autoFocus

@@ -87,6 +87,6 @@
 
         width: min(var(--sidebar-mobile-width), calc(100vw - var(--space-8)));
 
-        box-shadow: var(--shadow-xl);
+        box-shadow: var(--shadow-lg);
     }
 }

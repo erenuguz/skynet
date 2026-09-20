@@ -1,14 +1,14 @@
 import ConfirmModal from '@/components/ui/modal/ConfirmModal';
 import useRoomActions from '@/hooks/useRoomActions';
 
-export default function RoomDeleteModal({userId, room, onClose}) {
+export default function RoomDeleteModal({userId, room, onDeleted, onClose}) {
     const {deleteRoom, isProcessing} = useRoomActions(userId);
 
     const handleDelete = async () => {
         const isDeleted = await deleteRoom(room.id);
 
         if (isDeleted) {
-            onClose();
+            onDeleted(room.id);
         }
     };
 

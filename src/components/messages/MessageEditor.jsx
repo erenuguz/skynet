@@ -2,6 +2,8 @@ import {useState} from 'react';
 import useMessageActions from '@/hooks/useMessageActions';
 import './MessageEditor.css';
 
+import {MESSAGE_MAX_LENGTH} from '@/constants/limits';
+
 export default function MessageEditor({
     userId,
     roomId,
@@ -67,6 +69,7 @@ export default function MessageEditor({
                     .filter(Boolean)
                     .join(' ')}
                 value={text}
+                maxLength={MESSAGE_MAX_LENGTH}
                 disabled={isProcessing}
                 aria-label="Mesajı düzenle"
                 autoFocus

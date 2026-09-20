@@ -1,11 +1,11 @@
 import './Toast.css';
 
-export default function Toast({message, onClose}) {
+export default function Toast({message, type = 'error', onClose}) {
+    const role = type === 'error' ? 'alert' : 'status';
+
     return (
-        <div className="toast">
-            <p className="toast__message" role="alert">
-                {message}
-            </p>
+        <div className={`toast toast--${type}`} role={role} aria-atomic="true">
+            <p className="toast__message">{message}</p>
 
             <button
                 className="toast__close"

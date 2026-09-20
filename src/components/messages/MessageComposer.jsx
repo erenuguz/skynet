@@ -2,6 +2,8 @@ import {useRef, useState} from 'react';
 import useMessageActions from '@/hooks/useMessageActions';
 import './MessageComposer.css';
 
+import {MESSAGE_MAX_LENGTH} from '@/constants/limits';
+
 export default function MessageComposer({userId, roomId}) {
     const [text, setText] = useState('');
     const textareaRef = useRef(null);
@@ -55,6 +57,7 @@ export default function MessageComposer({userId, roomId}) {
                     name="message"
                     value={text}
                     rows={1}
+                    maxLength={MESSAGE_MAX_LENGTH}
                     placeholder="Bir mesaj yaz…"
                     aria-label="Mesaj"
                     disabled={isProcessing}

@@ -1,5 +1,6 @@
 .loading-screen {
     display: grid;
+    min-height: 100vh;
     min-height: 100dvh;
     place-content: center;
     justify-items: center;
@@ -7,20 +8,19 @@
 }
 
 .loading-screen__spinner {
-    width: 2rem;
-    height: 2rem;
+    width: var(--loading-size);
+    height: var(--loading-size);
 
-    border: 0.1875rem solid currentColor;
-    border-top-color: transparent;
-    border-radius: 50%;
+    border: 0.1875rem solid var(--loading-track-color);
+    border-top-color: var(--loading-color);
+    border-radius: var(--radius-pill);
 
-    opacity: 0.8;
     animation: loading-screen-spin 700ms linear infinite;
 }
 
 .loading-screen__text {
     margin: 0;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     font-size: var(--font-size-sm);
 }
 
@@ -32,6 +32,7 @@
 
 @media (prefers-reduced-motion: reduce) {
     .loading-screen__spinner {
-        animation-duration: 1400ms;
+        animation: none;
+        border-color: var(--loading-color);
     }
 }

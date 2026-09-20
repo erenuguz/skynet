@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import Sidebar from '@/components/layout/sidebar/Sidebar';
 import ChatHeader from '@/components/messages/ChatHeader';
 import MessagesPanel from '@/components/messages/MessagesPanel';
@@ -6,6 +6,7 @@ import RoomCreateModal from '@/components/rooms/RoomCreateModal';
 import RoomDeleteModal from '@/components/rooms/RoomDeleteModal';
 import RoomEditModal from '@/components/rooms/RoomEditModal';
 import RoomEmptyState from '@/components/rooms/RoomEmptyState';
+import ContentState from '@/components/ui/content-state/ContentState';
 import useRooms from '@/hooks/useRooms';
 import './HomePage.css';
 
@@ -40,6 +41,22 @@ export default function HomePage({user}) {
             return Math.max(highestOrder, roomOrder);
         }, 0) + 1;
 
+    useEffect(() => {
+        if (!isSidebarOpen) return undefined;
+
+        const handleKeyDown = (event) => {
+            if (event.key === 'Escape') {
+                setIsSidebarOpen(false);
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [isSidebarOpen]);
+
     const handleSelectRoom = (roomId) => {
         setSelectedRoomId(roomId);
 
@@ -55,6 +72,50 @@ export default function HomePage({user}) {
         if (window.matchMedia(MOBILE_BREAKPOINT).matches) {
             setIsSidebarOpen(false);
         }
+    };
+
+    const handleRoomDeleted = (roomId) => {
+        if (selectedRoom?.id === roomId) {
+            const nextRoom = rooms.find((room) => room.id !== roomId) ?? null;
+
+            setSelectedRoomId(nextRoom?.id ?? null);
+        }
+
+        setRoomToDelete(null);
+    };
+
+    const renderContent = () => {
+        if (isRoomsLoading) {
+            return <ContentState title="Odalar yükleniyor…" isLoading />;
+        }
+
+        if (hasRoomsError) {
+            return (
+                <ContentState
+                    title="Odalar yüklenemedi"
+                    description="Bağlantını kontrol edip tekrar deneyebilirsin."
+                    variant="error"
+                    actionLabel="Tekrar dene"
+                    onAction={() => window.location.reload()}
+                />
+            );
+        }
+
+        if (!selectedRoom) {
+            return (
+                <RoomEmptyState
+                    onCreateRoom={() => setIsCreateRoomOpen(true)}
+                />
+            );
+        }
+
+        return (
+            <MessagesPanel
+                key={selectedRoom.id}
+                userId={user.uid}
+                roomId={selectedRoom.id}
+            />
+        );
     };
 
     return (
@@ -91,24 +152,7 @@ export default function HomePage({user}) {
                         onOpenSidebar={() => setIsSidebarOpen(true)}
                     />
 
-                    <div className="home-content__body">
-                        {selectedRoom ? (
-                            <MessagesPanel
-                                key={selectedRoom.id}
-                                userId={user.uid}
-                                roomId={selectedRoom.id}
-                            />
-                        ) : (
-                            !isRoomsLoading &&
-                            !hasRoomsError && (
-                                <RoomEmptyState
-                                    onCreateRoom={() =>
-                                        setIsCreateRoomOpen(true)
-                                    }
-                                />
-                            )
-                        )}
-                    </div>
+                    <div className="home-content__body">{renderContent()}</div>
                 </section>
             </main>
 
@@ -135,6 +179,7 @@ export default function HomePage({user}) {
                     key={roomToDelete.id}
                     userId={user.uid}
                     room={roomToDelete}
+                    onDeleted={handleRoomDeleted}
                     onClose={() => setRoomToDelete(null)}
                 />
             )}

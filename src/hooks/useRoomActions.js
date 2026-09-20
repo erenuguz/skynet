@@ -17,16 +17,22 @@ const DELETE_BATCH_SIZE = 400;
 export default function useRoomActions(userId) {
     const [isProcessing, setIsProcessing] = useState(false);
     const isPending = useRef(false);
-    const {showError} = useToast();
+    const {showSuccess, showError} = useToast();
 
-    const runAction = async (action, errorMessage) => {
+    const runAction = async ({action, errorMessage, successMessage}) => {
         if (isPending.current) return null;
 
         isPending.current = true;
         setIsProcessing(true);
 
         try {
-            return await action();
+            const result = await action();
+
+            if (successMessage) {
+                showSuccess(successMessage);
+            }
+
+            return result;
         } catch {
             showError(errorMessage);
             return null;
@@ -37,69 +43,81 @@ export default function useRoomActions(userId) {
     };
 
     const createRoom = async (name, order) => {
-        return runAction(async () => {
-            const roomsReference = collection(db, 'users', userId, 'rooms');
+        return runAction({
+            action: async () => {
+                const roomsReference = collection(db, 'users', userId, 'rooms');
 
-            const roomReference = await addDoc(roomsReference, {
-                name,
-                order,
-                createdAt: serverTimestamp(),
-            });
+                const roomReference = await addDoc(roomsReference, {
+                    name,
+                    order,
+                    createdAt: serverTimestamp(),
+                });
 
-            return roomReference.id;
-        }, 'Oda oluşturulamadı.');
+                return roomReference.id;
+            },
+            successMessage: 'Oda oluşturuldu.',
+            errorMessage: 'Oda oluşturulamadı.',
+        });
     };
 
     const updateRoomName = async (roomId, name) => {
-        return runAction(async () => {
-            const roomReference = doc(db, 'users', userId, 'rooms', roomId);
+        return runAction({
+            action: async () => {
+                const roomReference = doc(db, 'users', userId, 'rooms', roomId);
 
-            await updateDoc(roomReference, {
-                name,
-            });
+                await updateDoc(roomReference, {
+                    name,
+                });
 
-            return true;
-        }, 'Oda adı güncellenemedi.');
+                return true;
+            },
+            successMessage: 'Oda adı güncellendi.',
+            errorMessage: 'Oda adı güncellenemedi.',
+        });
     };
 
     const deleteRoom = async (roomId) => {
-        return runAction(async () => {
-            const messagesReference = collection(
-                db,
-                'users',
-                userId,
-                'rooms',
-                roomId,
-                'messages'
-            );
-
-            const messagesSnapshot = await getDocs(messagesReference);
-
-            for (
-                let index = 0;
-                index < messagesSnapshot.docs.length;
-                index += DELETE_BATCH_SIZE
-            ) {
-                const messageGroup = messagesSnapshot.docs.slice(
-                    index,
-                    index + DELETE_BATCH_SIZE
+        return runAction({
+            action: async () => {
+                const messagesReference = collection(
+                    db,
+                    'users',
+                    userId,
+                    'rooms',
+                    roomId,
+                    'messages'
                 );
 
-                const batch = writeBatch(db);
+                const messagesSnapshot = await getDocs(messagesReference);
 
-                messageGroup.forEach((messageDocument) => {
-                    batch.delete(messageDocument.ref);
-                });
+                for (
+                    let index = 0;
+                    index < messagesSnapshot.docs.length;
+                    index += DELETE_BATCH_SIZE
+                ) {
+                    const messageGroup = messagesSnapshot.docs.slice(
+                        index,
+                        index + DELETE_BATCH_SIZE
+                    );
 
-                await batch.commit();
-            }
+                    const batch = writeBatch(db);
 
-            const roomReference = doc(db, 'users', userId, 'rooms', roomId);
+                    messageGroup.forEach((messageDocument) => {
+                        batch.delete(messageDocument.ref);
+                    });
 
-            await deleteDoc(roomReference);
+                    await batch.commit();
+                }
 
-            return true;
-        }, 'Oda silinemedi.');
+                const roomReference = doc(db, 'users', userId, 'rooms', roomId);
+
+                await deleteDoc(roomReference);
+
+                return true;
+            },
+            successMessage: 'Oda silindi.',
+            errorMessage: 'Oda silinemedi.',
+        });
     };
 
     return {

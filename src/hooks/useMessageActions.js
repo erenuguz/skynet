@@ -13,9 +13,9 @@ import useToast from '@/hooks/useToast';
 export default function useMessageActions(userId, roomId) {
     const [isProcessing, setIsProcessing] = useState(false);
     const isPending = useRef(false);
-    const {showError} = useToast();
+    const {showSuccess, showError} = useToast();
 
-    const runAction = async (action, errorMessage) => {
+    const runAction = async ({action, errorMessage, successMessage}) => {
         if (isPending.current) return false;
 
         isPending.current = true;
@@ -23,6 +23,11 @@ export default function useMessageActions(userId, roomId) {
 
         try {
             await action();
+
+            if (successMessage) {
+                showSuccess(successMessage);
+            }
+
             return true;
         } catch {
             showError(errorMessage);
@@ -34,57 +39,68 @@ export default function useMessageActions(userId, roomId) {
     };
 
     const createMessage = async (text) => {
-        return runAction(async () => {
-            const messagesReference = collection(
-                db,
-                'users',
-                userId,
-                'rooms',
-                roomId,
-                'messages'
-            );
+        return runAction({
+            action: async () => {
+                const messagesReference = collection(
+                    db,
+                    'users',
+                    userId,
+                    'rooms',
+                    roomId,
+                    'messages'
+                );
 
-            await addDoc(messagesReference, {
-                text,
-                createdAt: serverTimestamp(),
-                editedAt: null,
-            });
-        }, 'Mesaj gönderilemedi.');
+                await addDoc(messagesReference, {
+                    text,
+                    createdAt: serverTimestamp(),
+                    editedAt: null,
+                });
+            },
+            errorMessage: 'Mesaj gönderilemedi.',
+        });
     };
 
     const updateMessage = async (messageId, text) => {
-        return runAction(async () => {
-            const messageReference = doc(
-                db,
-                'users',
-                userId,
-                'rooms',
-                roomId,
-                'messages',
-                messageId
-            );
+        return runAction({
+            action: async () => {
+                const messageReference = doc(
+                    db,
+                    'users',
+                    userId,
+                    'rooms',
+                    roomId,
+                    'messages',
+                    messageId
+                );
 
-            await updateDoc(messageReference, {
-                text,
-                editedAt: serverTimestamp(),
-            });
-        }, 'Mesaj güncellenemedi.');
+                await updateDoc(messageReference, {
+                    text,
+                    editedAt: serverTimestamp(),
+                });
+            },
+            successMessage: 'Mesaj güncellendi.',
+            errorMessage: 'Mesaj güncellenemedi.',
+        });
     };
 
     const deleteMessage = async (messageId) => {
-        return runAction(async () => {
-            const messageReference = doc(
-                db,
-                'users',
-                userId,
-                'rooms',
-                roomId,
-                'messages',
-                messageId
-            );
+        return runAction({
+            action: async () => {
+                const messageReference = doc(
+                    db,
+                    'users',
+                    userId,
+                    'rooms',
+                    roomId,
+                    'messages',
+                    messageId
+                );
 
-            await deleteDoc(messageReference);
-        }, 'Mesaj silinemedi.');
+                await deleteDoc(messageReference);
+            },
+            successMessage: 'Mesaj silindi.',
+            errorMessage: 'Mesaj silinemedi.',
+        });
     };
 
     return {
