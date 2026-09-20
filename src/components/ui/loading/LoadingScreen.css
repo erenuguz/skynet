@@ -1,0 +1,37 @@
+.loading-screen {
+    display: grid;
+    min-height: 100dvh;
+    place-content: center;
+    justify-items: center;
+    gap: var(--space-4);
+}
+
+.loading-screen__spinner {
+    width: 2rem;
+    height: 2rem;
+
+    border: 0.1875rem solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+
+    opacity: 0.8;
+    animation: loading-screen-spin 700ms linear infinite;
+}
+
+.loading-screen__text {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+@keyframes loading-screen-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .loading-screen__spinner {
+        animation-duration: 1400ms;
+    }
+}

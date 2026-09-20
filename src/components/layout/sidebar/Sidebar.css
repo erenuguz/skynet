@@ -79,3 +79,14 @@
 .sidebar__logout:disabled {
     opacity: var(--opacity-disabled);
 }
+@media (max-width: 48rem) {
+    .sidebar {
+        position: fixed;
+        inset: 0 auto 0 0;
+        z-index: var(--z-sidebar);
+
+        width: min(var(--sidebar-mobile-width), calc(100vw - var(--space-8)));
+
+        box-shadow: var(--shadow-xl);
+    }
+}

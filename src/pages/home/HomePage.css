@@ -28,3 +28,31 @@
     padding: var(--space-4);
     color: var(--color-text-muted);
 }
+.home-page__sidebar-backdrop {
+    display: none;
+}
+
+@media (max-width: 48rem) {
+    .home-page__sidebar-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: var(--z-sidebar-backdrop);
+
+        display: block;
+
+        padding: 0;
+        border: 0;
+
+        background: var(--overlay-background);
+        backdrop-filter: blur(0.25rem);
+    }
+
+    .home-content {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .home-content__body {
+        min-width: 0;
+    }
+}

@@ -55,3 +55,12 @@
         color: var(--toast-close-color-hover);
     }
 }
+@media (max-width: 48rem) {
+    .toast {
+        right: var(--space-3);
+        left: var(--space-3);
+
+        width: auto;
+        max-width: none;
+    }
+}

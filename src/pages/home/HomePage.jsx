@@ -5,11 +5,16 @@ import MessagesPanel from '@/components/messages/MessagesPanel';
 import RoomCreateModal from '@/components/rooms/RoomCreateModal';
 import RoomDeleteModal from '@/components/rooms/RoomDeleteModal';
 import RoomEditModal from '@/components/rooms/RoomEditModal';
+import RoomEmptyState from '@/components/rooms/RoomEmptyState';
 import useRooms from '@/hooks/useRooms';
 import './HomePage.css';
 
+const MOBILE_BREAKPOINT = '(max-width: 48rem)';
+
 export default function HomePage({user}) {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(
+        () => !window.matchMedia(MOBILE_BREAKPOINT).matches
+    );
     const [selectedRoomId, setSelectedRoomId] = useState(null);
     const [isCreateRoomOpen, setIsCreateRoomOpen] = useState(false);
     const [roomToEdit, setRoomToEdit] = useState(null);
@@ -35,27 +40,48 @@ export default function HomePage({user}) {
             return Math.max(highestOrder, roomOrder);
         }, 0) + 1;
 
+    const handleSelectRoom = (roomId) => {
+        setSelectedRoomId(roomId);
+
+        if (window.matchMedia(MOBILE_BREAKPOINT).matches) {
+            setIsSidebarOpen(false);
+        }
+    };
+
     const handleRoomCreated = (roomId) => {
         setSelectedRoomId(roomId);
         setIsCreateRoomOpen(false);
+
+        if (window.matchMedia(MOBILE_BREAKPOINT).matches) {
+            setIsSidebarOpen(false);
+        }
     };
 
     return (
         <>
             <main className="home-page">
                 {isSidebarOpen && (
-                    <Sidebar
-                        user={user}
-                        rooms={rooms}
-                        isRoomsLoading={isRoomsLoading}
-                        hasRoomsError={hasRoomsError}
-                        selectedRoomId={selectedRoom?.id ?? null}
-                        onSelectRoom={setSelectedRoomId}
-                        onCreateRoom={() => setIsCreateRoomOpen(true)}
-                        onEditRoom={setRoomToEdit}
-                        onDeleteRoom={setRoomToDelete}
-                        onClose={() => setIsSidebarOpen(false)}
-                    />
+                    <>
+                        <button
+                            className="home-page__sidebar-backdrop"
+                            type="button"
+                            aria-label="Kenar çubuğunu kapat"
+                            onClick={() => setIsSidebarOpen(false)}
+                        />
+
+                        <Sidebar
+                            user={user}
+                            rooms={rooms}
+                            isRoomsLoading={isRoomsLoading}
+                            hasRoomsError={hasRoomsError}
+                            selectedRoomId={selectedRoom?.id ?? null}
+                            onSelectRoom={handleSelectRoom}
+                            onCreateRoom={() => setIsCreateRoomOpen(true)}
+                            onEditRoom={setRoomToEdit}
+                            onDeleteRoom={setRoomToDelete}
+                            onClose={() => setIsSidebarOpen(false)}
+                        />
+                    </>
                 )}
 
                 <section className="home-content">
@@ -73,10 +99,13 @@ export default function HomePage({user}) {
                                 roomId={selectedRoom.id}
                             />
                         ) : (
-                            !isRoomsLoading && (
-                                <p className="home-content__message">
-                                    Görüntülemek için bir oda oluştur.
-                                </p>
+                            !isRoomsLoading &&
+                            !hasRoomsError && (
+                                <RoomEmptyState
+                                    onCreateRoom={() =>
+                                        setIsCreateRoomOpen(true)
+                                    }
+                                />
                             )
                         )}
                     </div>
