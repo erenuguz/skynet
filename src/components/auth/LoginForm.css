@@ -79,3 +79,15 @@
 .login-form__submit:active {
     transform: var(--button-active-transform);
 }
+.login-form__input:disabled {
+    background: var(--input-background-disabled);
+    border-color: var(--input-border-color);
+    opacity: var(--opacity-disabled);
+    cursor: not-allowed;
+}
+
+.login-form__submit:disabled {
+    background: var(--button-primary-background);
+    opacity: var(--opacity-disabled);
+    transform: none;
+}

@@ -1,0 +1,33 @@
+.chat-header {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: var(--header-gap);
+    min-height: var(--header-height);
+    padding-inline: var(--header-padding-inline);
+    border-bottom: var(--header-border);
+    background: var(--header-background);
+}
+
+.chat-header__room {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.chat-header__room-icon {
+    flex-shrink: 0;
+    color: var(--header-icon-color);
+    font-size: var(--font-size-xl);
+}
+
+.chat-header__room-name {
+    margin: 0;
+    overflow: hidden;
+    color: var(--header-title-color);
+    font-size: var(--header-title-font-size);
+    font-weight: var(--header-title-font-weight);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

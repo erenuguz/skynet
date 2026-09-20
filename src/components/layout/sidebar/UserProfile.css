@@ -1,0 +1,48 @@
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: var(--sidebar-user-gap);
+    padding: var(--sidebar-user-padding);
+    border: var(--sidebar-user-border);
+    border-radius: var(--sidebar-user-radius);
+    background: var(--sidebar-user-background);
+}
+
+.user-profile__avatar {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: var(--sidebar-avatar-size);
+    height: var(--sidebar-avatar-size);
+    border-radius: var(--radius-pill);
+    background: var(--sidebar-avatar-background);
+    color: var(--sidebar-avatar-color);
+    font-size: var(--sidebar-avatar-font-size);
+    font-weight: var(--font-weight-bold);
+}
+
+.user-profile__information {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.user-profile__name,
+.user-profile__email {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-profile__name {
+    color: var(--sidebar-user-name-color);
+    font-size: var(--sidebar-user-name-font-size);
+    font-weight: var(--font-weight-semibold);
+}
+
+.user-profile__email {
+    color: var(--sidebar-user-email-color);
+    font-size: var(--sidebar-user-email-font-size);
+}

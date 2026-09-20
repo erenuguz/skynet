@@ -1,0 +1,81 @@
+.sidebar {
+    display: flex;
+    flex: 0 0 var(--sidebar-width);
+    width: var(--sidebar-width);
+    min-width: 0;
+    min-height: 0;
+    flex-direction: column;
+    background: var(--sidebar-background);
+    border-inline-end: var(--sidebar-border);
+}
+
+.sidebar__content {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    flex-direction: column;
+    gap: var(--sidebar-section-gap);
+    padding: var(--sidebar-padding);
+}
+
+.sidebar__rooms {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    flex-direction: column;
+}
+
+.sidebar__section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    min-height: var(--sidebar-section-header-height);
+    padding-inline: var(--space-2);
+}
+
+.sidebar__section-title {
+    margin: 0;
+    color: var(--sidebar-section-title-color);
+    font-size: var(--sidebar-section-title-font-size);
+    font-weight: var(--sidebar-section-title-font-weight);
+    letter-spacing: var(--letter-spacing-label);
+    text-transform: uppercase;
+}
+
+.sidebar__footer {
+    padding: var(--sidebar-footer-padding);
+    border-top: var(--sidebar-border);
+}
+
+.sidebar__logout {
+    width: 100%;
+    min-height: var(--button-height);
+    padding: var(--space-2) var(--button-padding-inline);
+    border: var(--button-border-width) var(--border-style)
+        var(--button-secondary-border-color);
+    border-radius: var(--button-radius);
+    background: var(--button-secondary-background);
+    color: var(--button-secondary-text-color);
+    font-size: var(--button-font-size);
+    font-weight: var(--button-font-weight);
+    transition:
+        background-color var(--duration-fast) var(--ease-standard),
+        opacity var(--duration-fast) var(--ease-standard);
+}
+
+.sidebar__add-room {
+    width: var(--control-height-sm);
+    height: var(--control-height-sm);
+    font-size: var(--font-size-lg);
+}
+
+@media (hover: hover) {
+    .sidebar__logout:hover:not(:disabled) {
+        background: var(--button-secondary-background-hover);
+    }
+}
+
+.sidebar__logout:disabled {
+    opacity: var(--opacity-disabled);
+}

@@ -148,6 +148,40 @@
     --sidebar-title-font-size: var(--font-size-lg);
     --sidebar-title-font-weight: var(--font-weight-bold);
 
+    --sidebar-header-height: var(--header-height);
+    --sidebar-header-padding-inline: var(--space-3);
+
+    --sidebar-brand-gap: var(--space-3);
+    --sidebar-logo-size: 2.25rem;
+    --sidebar-logo-radius: var(--radius-md);
+    --sidebar-logo-background: var(--color-accent);
+    --sidebar-logo-color: var(--color-on-accent);
+    --sidebar-logo-font-size: var(--font-size-lg);
+
+    --sidebar-user-background: var(--color-surface-raised);
+    --sidebar-user-border: var(--border-width) var(--border-style)
+        var(--color-border);
+    --sidebar-user-radius: var(--radius-lg);
+    --sidebar-user-padding: var(--space-3);
+    --sidebar-user-gap: var(--space-3);
+
+    --sidebar-avatar-size: 2.5rem;
+    --sidebar-avatar-background: var(--color-accent-soft);
+    --sidebar-avatar-color: var(--color-accent);
+    --sidebar-avatar-font-size: var(--font-size-md);
+
+    --sidebar-user-name-color: var(--color-text);
+    --sidebar-user-name-font-size: var(--font-size-sm);
+    --sidebar-user-email-color: var(--color-text-muted);
+    --sidebar-user-email-font-size: var(--font-size-xs);
+
+    --sidebar-section-header-height: 2.25rem;
+    --sidebar-section-title-color: var(--color-text-muted);
+    --sidebar-section-title-font-size: var(--font-size-xs);
+    --sidebar-section-title-font-weight: var(--font-weight-semibold);
+
+    --sidebar-footer-padding: var(--space-3);
+
     --room-list-gap: var(--space-1);
 
     --room-background: transparent;
@@ -215,6 +249,9 @@
     --message-actions-shadow: var(--shadow-sm);
     --message-actions-padding: var(--space-1);
     --message-actions-gap: var(--space-1);
+
+    --message-editor-min-height: 7rem;
+    --message-editor-max-height: 24rem;
 
     /* ========================================
      10. KOD GÖRÜNÜMÜ
@@ -362,6 +399,9 @@
     --dropdown-item-padding: var(--space-2) var(--space-3);
     --dropdown-item-radius: var(--radius-sm);
     --dropdown-item-background-hover: var(--color-surface-hover);
+    --dropdown-gap: var(--space-1);
+    --dropdown-item-danger-color: var(--color-danger);
+    --dropdown-item-danger-background-hover: var(--color-danger-soft);
 
     /* ========================================
      16. BİLDİRİMLER VE BOŞ DURUMLAR
@@ -376,6 +416,19 @@
     --toast-success-color: var(--color-success);
     --toast-error-color: var(--color-danger);
     --toast-warning-color: var(--color-warning);
+
+    --toast-offset: var(--space-4);
+    --toast-gap: var(--space-3);
+    --toast-max-width: 24rem;
+    --toast-accent-width: 3px;
+    --toast-font-size: var(--font-size-sm);
+
+    --toast-close-size: var(--control-height-sm);
+    --toast-close-radius: var(--radius-sm);
+    --toast-close-font-size: var(--font-size-xl);
+    --toast-close-color: var(--color-text-secondary);
+    --toast-close-color-hover: var(--color-text);
+    --toast-close-background-hover: var(--color-surface-hover);
 
     --empty-state-title-color: var(--color-text-secondary);
     --empty-state-description-color: var(--color-text-muted);

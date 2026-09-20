@@ -1,0 +1,81 @@
+.message-composer {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: var(--content-max-width);
+    margin-inline: auto;
+    padding: 0 var(--content-padding-inline) var(--composer-margin-bottom);
+}
+
+.message-composer__container {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--composer-gap);
+    padding: var(--composer-padding);
+    border: var(--composer-border-width) var(--border-style)
+        var(--composer-border-color);
+    border-radius: var(--composer-radius);
+    background: var(--composer-background);
+    box-shadow: var(--composer-shadow);
+    transition: border-color var(--duration-fast) var(--ease-standard);
+}
+
+.message-composer__container:focus-within {
+    border-color: var(--composer-border-color-focus);
+}
+
+.message-composer__input {
+    flex: 1;
+    min-width: 0;
+    min-height: var(--composer-input-min-height);
+    max-height: var(--composer-input-max-height);
+    padding: var(--space-3);
+    border: 0;
+    outline: 0;
+    resize: none;
+    overflow-y: auto;
+    background: transparent;
+    color: var(--composer-text-color);
+    font-size: var(--composer-font-size);
+    line-height: var(--composer-line-height);
+}
+
+.message-composer__input::placeholder {
+    color: var(--composer-placeholder-color);
+}
+
+.message-composer__input:disabled {
+    opacity: var(--opacity-disabled);
+}
+
+.message-composer__submit {
+    flex-shrink: 0;
+    min-height: var(--button-height);
+    padding: var(--space-2) var(--button-padding-inline);
+    border: var(--button-border-width) var(--border-style)
+        var(--button-primary-border-color);
+    border-radius: var(--button-radius);
+    background: var(--button-primary-background);
+    color: var(--button-primary-text-color);
+    font-size: var(--button-font-size);
+    font-weight: var(--button-font-weight);
+    transition:
+        background-color var(--duration-fast) var(--ease-standard),
+        opacity var(--duration-fast) var(--ease-standard);
+}
+
+.message-composer__submit:disabled {
+    opacity: var(--opacity-disabled);
+}
+
+.message-composer__hint {
+    margin: var(--space-2) 0 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+    text-align: end;
+}
+
+@media (hover: hover) {
+    .message-composer__submit:hover:not(:disabled) {
+        background: var(--button-primary-background-hover);
+    }
+}
