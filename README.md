@@ -1,16 +1,111 @@
-# React + Vite
+# Skynet
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Skynet; odalar oluşturarak bağlantı, kod, parola ve kişisel notları sohbet görünümünde saklamak için geliştirdiğim kişisel bilgi yönetimi uygulamasıdır.
 
-Currently, two official plugins are available:
+**Canlı uygulama:** [skynet-33b6c.web.app](https://skynet-33b6c.web.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Özellikler
 
-## React Compiler
+- Firebase Email/Password ile kullanıcı girişi
+- Oda oluşturma, düzenleme ve silme
+- Mesaj oluşturma, düzenleme ve silme
+- Düzenlenen mesajlarda `(düzenlendi)` bilgisi
+- Tüm odalardaki mesajlarda arama
+- Arama sonucundan ilgili oda ve mesaja doğrudan geçiş
+- Açılıp kapanabilen, mobil uyumlu kenar çubuğu
+- Yalnızca koyu tema
+- Yüklenme, hata, boş durum ve bildirim arayüzleri
+- Firebase Hosting üzerinde yayın
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Kullanılan Teknolojiler
 
-## Expanding the ESLint configuration
+- [React](https://react.dev/)
+- [Vite](https://vite.dev/)
+- [Firebase Authentication](https://firebase.google.com/docs/auth)
+- [Cloud Firestore](https://firebase.google.com/docs/firestore)
+- [Firebase Hosting](https://firebase.google.com/docs/hosting)
+- ESLint
+- JavaScript ve CSS
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Kurulum
+
+Projeyi klonlayın:
+
+```bash
+git clone https://github.com/erenuguz/skynet.git
+cd skynet
+npm install
+```
+
+Kök dizinde `.env` dosyası oluşturun ve Firebase web uygulamanızın bilgilerini ekleyin:
+
+```env
+VITE_FIREBASE_API_KEY=
+VITE_FIREBASE_AUTH_DOMAIN=
+VITE_FIREBASE_PROJECT_ID=
+VITE_FIREBASE_STORAGE_BUCKET=
+VITE_FIREBASE_MESSAGING_SENDER_ID=
+VITE_FIREBASE_APP_ID=
+```
+
+Geliştirme sunucusunu başlatın:
+
+```bash
+npm run dev
+```
+
+## Komutlar
+
+| Komut | Açıklama |
+| --- | --- |
+| `npm run dev` | Geliştirme sunucusunu başlatır |
+| `npm run build` | Üretim derlemesini oluşturur |
+| `npm run lint` | ESLint kontrolünü çalıştırır |
+| `npm run preview` | Üretim derlemesini yerelde önizler |
+
+## Firestore Veri Yapısı
+
+```text
+users/{uid}
+└── rooms/{roomId}
+    └── messages/{messageId}
+```
+
+### Oda alanları
+
+| Alan | Tür |
+| --- | --- |
+| `name` | string |
+| `order` | number |
+| `createdAt` | timestamp |
+
+### Mesaj alanları
+
+| Alan | Tür |
+| --- | --- |
+| `text` | string |
+| `createdAt` | timestamp |
+| `editedAt` | timestamp veya null |
+
+Tüm oda ve mesaj işlemleri oturum açan kullanıcının `users/{uid}` yolu altında gerçekleştirilir.
+
+## Proje Yapısı
+
+```text
+src/
+├── components/   # Tekrar kullanılabilir arayüz parçaları
+├── constants/    # Uygulama sabitleri
+├── contexts/     # React context tanımları
+├── hooks/        # Firebase ve arayüz mantığı
+├── pages/        # Sayfa bileşenleri
+├── providers/    # Context sağlayıcıları
+├── styles/       # Global stil ve tema değişkenleri
+└── utils/        # Yardımcı fonksiyonlar
+```
+
+## Güvenlik
+
+- Firebase yapılandırması ortam değişkenleri üzerinden okunur.
+- Gerçek `.env` dosyası Git deposuna dahil edilmez.
+- Verilere erişim Firebase Authentication ve Firestore Security Rules ile sınırlandırılır.
+- Uygulama uçtan uca şifreleme sağlamaz; güvenlik için Firebase hesabı ve kuralların doğru yapılandırılması gerekir.
